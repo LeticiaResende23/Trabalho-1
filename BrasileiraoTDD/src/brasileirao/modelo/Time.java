@@ -26,9 +26,13 @@ public class Time implements Comparable<Time> {
     public int getSaldoDeGols() {
         return this.golsMarcados - this.golsSofridos;
     }
-    
+
     @Override
     public int compareTo(Time outro) {
+        return compararPorPontosEVitorias(outro);
+    }
+
+    private int compararPorPontosEVitorias(Time outro) {
         // 1. Critério: Pontos (descrescente)
         if (this.getPontos() != outro.getPontos()) {
             return Integer.compare(outro.getPontos(), this.getPontos());
@@ -42,25 +46,25 @@ public class Time implements Comparable<Time> {
         // 3. Se empatar em tudo
         return 0;
     }
-    
+
     @Override
-	public int hashCode() {
-		return Objects.hash(nome);
-	}
+    public int hashCode() {
+        return Objects.hash(nome);
+    }
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Time other = (Time) obj;
-		return Objects.equals(nome, other.nome);
-	}
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Time other = (Time) obj;
+        return Objects.equals(nome, other.nome);
+    }
 
-	public void registrarPartida(int golsMarcados, int golsSofridos) {
+    public void registrarPartida(int golsMarcados, int golsSofridos) {
         this.golsMarcados += golsMarcados;
         this.golsSofridos += golsSofridos;
 
